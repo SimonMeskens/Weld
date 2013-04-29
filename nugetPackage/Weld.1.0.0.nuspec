@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Weld</id>
+        <version>1.0.0</version>
+        <title>Weld TypeScript MVC</title>
+        <authors>Martijn Muurman</authors>
+        <owners />
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Generates TypeScript classes on your MVC controller.</description>
+        <summary>Generates TypeScript classes on your MVC controller.</summary>
+        <copyright>2013</copyright>
+        <language>en-US</language>
+        <tags>typescipt mvc</tags>
+        <frameworkAssemblies>
+            <frameworkAssembly assemblyName="System" targetFramework="" />
+        </frameworkAssemblies>
+    </metadata>
+    <files>
+        <file src="..\..\Users\gluip\Downloads\weld-b6db120a1ac4850d90f6498ed5f4bfc8f7330b2c\Weld.Console\bin\Release\Weld.dll" target="lib\net40\Weld.dll" />
+        <file src="tools\install.ps1" target="tools\install.ps1" />
+        <file src="..\..\Users\gluip\Downloads\weld-b6db120a1ac4850d90f6498ed5f4bfc8f7330b2c\Weld.Console\bin\Release\RazorEngine.dll" target="tools\RazorEngine.dll" />
+        <file src="..\..\Users\gluip\Downloads\weld-b6db120a1ac4850d90f6498ed5f4bfc8f7330b2c\Weld.Console\bin\Release\Weld.Console.exe" target="tools\Weld.Console.exe" />
+    </files>
+</package>
