@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weld.Console", "Weld.Console\Weld.Console.csproj", "{8D3517BF-B039-4E0A-BC24-46FC6F8DE819}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weld.MVC.Sample", "Weld.MVC.Sample\Weld.MVC.Sample.csproj", "{730A37EE-73C8-4C11-AAFD-1CD0B2C98FEA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8D3517BF-B039-4E0A-BC24-46FC6F8DE819} = {8D3517BF-B039-4E0A-BC24-46FC6F8DE819}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9D912A21-9158-44D3-B91C-B82B388C4D5D}"
 EndProject
