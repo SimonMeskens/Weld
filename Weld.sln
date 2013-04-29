@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weld", "Weld\Weld.csproj", "{7D9F4ECC-2D43-4BE2-926B-F7ECDC0CD9B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weld.Test", "Weld.Test\Weld.Test.csproj", "{1B8D0ACF-FC81-42F4-8F6E-35A8CEFF763F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weld.Console", "Weld.Console\Weld.Console.csproj", "{8D3517BF-B039-4E0A-BC24-46FC6F8DE819}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weld.MVC.Sample", "Weld.MVC.Sample\Weld.MVC.Sample.csproj", "{730A37EE-73C8-4C11-AAFD-1CD0B2C98FEA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9D912A21-9158-44D3-B91C-B82B388C4D5D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F4E47370-6018-4078-90DE-3B0924486274}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D9F4ECC-2D43-4BE2-926B-F7ECDC0CD9B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D9F4ECC-2D43-4BE2-926B-F7ECDC0CD9B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D9F4ECC-2D43-4BE2-926B-F7ECDC0CD9B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D9F4ECC-2D43-4BE2-926B-F7ECDC0CD9B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B8D0ACF-FC81-42F4-8F6E-35A8CEFF763F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B8D0ACF-FC81-42F4-8F6E-35A8CEFF763F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B8D0ACF-FC81-42F4-8F6E-35A8CEFF763F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B8D0ACF-FC81-42F4-8F6E-35A8CEFF763F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D3517BF-B039-4E0A-BC24-46FC6F8DE819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D3517BF-B039-4E0A-BC24-46FC6F8DE819}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D3517BF-B039-4E0A-BC24-46FC6F8DE819}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D3517BF-B039-4E0A-BC24-46FC6F8DE819}.Release|Any CPU.Build.0 = Release|Any CPU
+		{730A37EE-73C8-4C11-AAFD-1CD0B2C98FEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{730A37EE-73C8-4C11-AAFD-1CD0B2C98FEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{730A37EE-73C8-4C11-AAFD-1CD0B2C98FEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{730A37EE-73C8-4C11-AAFD-1CD0B2C98FEA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal

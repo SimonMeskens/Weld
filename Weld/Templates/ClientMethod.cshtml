@@ -1,0 +1,31 @@
+﻿@model Weld.Templates.ClientMethodModel
+
+@functions {
+    //include a formatted string or put nothing if value is empty
+    private string I(string format,string value)
+    {
+        if (string.IsNullOrEmpty(value)) return "";
+
+        return string.Format(format, value);
+    }
+
+    //include a string or put nothing
+    private string I(string output, bool condition)
+    {
+        return condition ? output : "";
+    }
+
+}
+    @Raw(Model.Signature)
+    {
+        var url = "@Model.Url";
+        var data = @Model.Data;
+        $.ajax({
+            url: url,
+            @Raw(I("method : \"{0}\",",Model.AjaxMethod))
+            @I("data: data,",Model.Data)
+            @I("traditional: true,",Model.Traditional)
+            @I("success: {0},",Model.OnSucces)
+
+        });
+    }

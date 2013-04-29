@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1B8D0ACF-FC81-42F4-8F6E-35A8CEFF763F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Weld.Test</RootNamespace>
+    <AssemblyName>Weld.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Scenarios\AccountController.cs" />
+    <Compile Include="Scenarios\AnyForUnknown.cs" />
+    <Compile Include="Scenarios\BoolMethod.cs" />
+    <Compile Include="Scenarios\ConstValues.cs" />
+    <Compile Include="Scenarios\ContentResultSample.cs" />
+    <Compile Include="Scenarios\CustomUrl.cs" />
+    <Compile Include="Scenarios\PartialViewController.cs" />
+    <Compile Include="Scenarios\PostStringMethod.cs" />
+    <Compile Include="Scenarios\MethodWithReturnValue.cs" />
+    <Compile Include="Scenarios\TraditionalForArrays.cs" />
+    <Compile Include="Scenarios\VoidMethod.cs" />
+    <Compile Include="Scenarios\StringMethod.cs" />
+    <Compile Include="TypeScriptProcessorTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Weld\Weld.csproj">
+      <Project>{7D9F4ECC-2D43-4BE2-926B-F7ECDC0CD9B3}</Project>
+      <Name>Weld</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scenarios\CustomUrl.ts" />
+    <Content Include="Scenarios\AccountController.ts" />
+    <Content Include="Scenarios\BoolMethod.ts" />
+    <Content Include="Scenarios\AnyForUnknown.ts" />
+    <Content Include="Scenarios\ConstValues.js">
+      <DependentUpon>ConstValues.ts</DependentUpon>
+    </Content>
+    <Content Include="Scenarios\ConstValues.min.js">
+      <DependentUpon>ConstValues.ts</DependentUpon>
+    </Content>
+    <Content Include="Scenarios\ContentResultSample.ts" />
+    <TypeScriptCompile Include="Scenarios\ConstValues.ts" />
+    <Content Include="Scenarios\TraditionalForArrays.ts" />
+    <Content Include="Scenarios\PartialViewController.ts" />
+    <Content Include="Scenarios\PostStringMethod.ts" />
+    <Content Include="Scenarios\StringMethod.ts" />
+    <Content Include="Scenarios\VoidMethod.ts" />
+    <Content Include="Scenarios\MethodWithReturnValue.ts" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
