@@ -20,6 +20,7 @@
         <file src="..\Weld.Console\bin\Debug\Weld.dll" target="lib\net40\Weld.dll" />
         <file src="tools\install.ps1" target="tools\install.ps1" />
         <file src="..\Weld.Console\bin\Debug\RazorEngine.dll" target="tools\RazorEngine.dll" />
+        <file src="tools\uninstall.ps1" target="tools\uninstall.ps1" />
         <file src="..\Weld.Console\bin\Debug\Weld.Console.exe" target="tools\Weld.Console.exe" />
         <file src="..\Weld.Console\bin\Debug\Weld.dll" target="tools\Weld.dll" />
     </files>
