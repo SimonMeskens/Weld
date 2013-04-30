@@ -37,7 +37,7 @@ $buildProject = Get-MSBuildProject
 $target = $buildProject.Xml.AddTarget("WeldAfterbuild")
 $target.AfterTargets = "AfterBuild"
 $task = $target.AddTask("Exec")
-$task.SetParameter("Command", "&quot;.\..\packages\Weld.1.0.0\tools\Weld.console&quot; &quot;bin\$(TargetFileName)&quot; &quot;$(ProjectDir)\Scripts\Weld&quot;")
+$task.SetParameter("Command", "`".\..\packages\Weld.1.0.0\tools\Weld.console`" bin\`$(TargetFileName) `"`$(ProjectDir)\Scripts\Weld`"")
 
 
 $project.Save() #persists the changes

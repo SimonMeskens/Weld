@@ -17,9 +17,10 @@
         </frameworkAssemblies>
     </metadata>
     <files>
-        <file src="..\..\Users\gluip\Downloads\weld-b6db120a1ac4850d90f6498ed5f4bfc8f7330b2c\Weld.Console\bin\Release\Weld.dll" target="lib\net40\Weld.dll" />
+        <file src="..\Weld.Console\bin\Debug\Weld.dll" target="lib\net40\Weld.dll" />
         <file src="tools\install.ps1" target="tools\install.ps1" />
-        <file src="..\..\Users\gluip\Downloads\weld-b6db120a1ac4850d90f6498ed5f4bfc8f7330b2c\Weld.Console\bin\Release\RazorEngine.dll" target="tools\RazorEngine.dll" />
-        <file src="..\..\Users\gluip\Downloads\weld-b6db120a1ac4850d90f6498ed5f4bfc8f7330b2c\Weld.Console\bin\Release\Weld.Console.exe" target="tools\Weld.Console.exe" />
+        <file src="..\Weld.Console\bin\Debug\RazorEngine.dll" target="tools\RazorEngine.dll" />
+        <file src="..\Weld.Console\bin\Debug\Weld.Console.exe" target="tools\Weld.Console.exe" />
+        <file src="..\Weld.Console\bin\Debug\Weld.dll" target="tools\Weld.dll" />
     </files>
 </package>
