@@ -7,7 +7,7 @@
         <authors>Martijn Muurman</authors>
         <owners />
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Generates TypeScript classes on your MVC controller.</description>
+        <description>Weld is a open-source framework for creating TypeScript classes based on your MVC controller. Weld makes it easier to use ajax calls in your TypeScipt.</description>
         <summary>Generates TypeScript classes on your MVC controller.</summary>
         <copyright>2013</copyright>
         <language>en-US</language>
