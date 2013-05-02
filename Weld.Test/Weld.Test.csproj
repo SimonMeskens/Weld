@@ -75,6 +75,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scenarios\CustomUrl.ts" />
     <Content Include="Scenarios\AccountController.ts" />
     <Content Include="Scenarios\BoolMethod.ts" />

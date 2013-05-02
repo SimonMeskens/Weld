@@ -1,3 +1,4 @@
+/// <reference path="../typings/jquery/jquery.d.ts" />
 class StringMethod
 {
     Echo(value: string, callback: (data: string) => any)

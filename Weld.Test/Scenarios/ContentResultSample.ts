@@ -1,3 +1,4 @@
+/// <reference path="../typings/jquery/jquery.d.ts" />
 class ContentResultSample
 {
     Store(x: number, callback: (data: string) => any)

@@ -1,3 +1,4 @@
+/// <reference path="../typings/jquery/jquery.d.ts" />
 class MethodWithReturnValue
 {
     Sum(x: number, y: number, callback: (data: number) => any)

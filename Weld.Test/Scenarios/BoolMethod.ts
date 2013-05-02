@@ -1,3 +1,4 @@
+/// <reference path="../typings/jquery/jquery.d.ts" />
 class BoolMethod
 {
     Store(value: bool)

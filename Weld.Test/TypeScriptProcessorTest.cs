@@ -106,15 +106,27 @@ namespace Weld.Test
         
         private void TestSampleType<T>()
         {
+            //switch between testing and writing expectations
+            var writeExpectations = true;
+
             var name = typeof (T).Name;
             var fileName = string.Format("{0}.ts",name);
-            var expectContent = File.ReadAllText(string.Format("./../../Scenarios/{0}",fileName));
+            var filePath = string.Format("./../../Scenarios/{0}", fileName);
+            var expectContent = File.ReadAllText(filePath);
 
             
             var result = processor.Process(typeof (T));
 
-            Assert.AreEqual(fileName, result.FileName);
-            Assert.AreEqual(expectContent,result.Content);
+            if (!writeExpectations)
+            {
+                Assert.AreEqual(fileName, result.FileName);
+                Assert.AreEqual(expectContent, result.Content);    
+            }
+            else
+            {
+                File.WriteAllText(filePath, result.Content);
+            }
+            
         }
     }
 }

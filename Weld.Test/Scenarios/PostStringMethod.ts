@@ -1,3 +1,4 @@
+/// <reference path="../typings/jquery/jquery.d.ts" />
 class PostStringMethod
 {
     Echo(value: string, callback: (data: string) => any)

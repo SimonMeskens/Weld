@@ -12,7 +12,7 @@ namespace Weld
 
 
     /// <summary>
-    /// TODO: make interface and extentible
+    /// TODO: make interface and extendible
     /// </summary>
     public class TypeScriptProcessor
     {
@@ -37,12 +37,19 @@ namespace Weld
                 null;
         }
 
+        private static string GetIncludes()
+        {
+            //TODO: make configurable
+            return "/// <reference path=\"../typings/jquery/jquery.d.ts\" />";
+        }
+
         private ProcessResult GenerateCode(Type type, IEnumerable<MemberInfo> targetMembers)
         {
             var fileName = GetFileName(type);
             var className = GetClassName(type);
 
             var contentBuilder = new StringBuilder();
+            contentBuilder.AppendLine(GetIncludes());
             contentBuilder.AppendLineFormat("class {0}", className);
             contentBuilder.AppendLine("{");
 
