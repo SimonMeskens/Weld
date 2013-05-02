@@ -1,3 +1,4 @@
+/// <reference path="../typings/jquery/jquery.d.ts" />
 class HomeController
 {
     Sum(x: number, y: number, callback: (data: number) => any)

@@ -12,6 +12,9 @@
         <copyright>2013</copyright>
         <language>en-US</language>
         <tags>typescipt mvc</tags>
+        <dependencies>
+            <dependency id="jquery.TypeScript.DefinitelyTyped" version="0.1.1" />
+        </dependencies>
         <frameworkAssemblies>
             <frameworkAssembly assemblyName="System" targetFramework="" />
         </frameworkAssemblies>
