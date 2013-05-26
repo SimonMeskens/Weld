@@ -30,14 +30,18 @@ function Resolve-ProjectName {
 
 
 
-
 $project = Get-Project
 $buildProject = Get-MSBuildProject
 
 $target = $buildProject.Xml.AddTarget("WeldAfterbuild")
 $target.AfterTargets = "AfterBuild"
+$target.BeforeTargets = "TypeScript"
 $task = $target.AddTask("Exec")
-$task.SetParameter("Command", "`".\..\packages\Weld.1.0.0\tools\Weld.console`" bin\`$(TargetFileName) `"`$(ProjectDir)\Scripts\Weld`"")
+$task.SetParameter("Command", "`".\..\packages\Weld.1.1.0\tools\Weld.console`" bin\`$(TargetFileName) `"`$(ProjectDir)\Scripts\Weld`"")
+
+
+
+
 
 
 $project.Save() #persists the changes

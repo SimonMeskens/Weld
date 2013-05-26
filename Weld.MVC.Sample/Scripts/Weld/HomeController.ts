@@ -20,4 +20,22 @@ class HomeController
             data: data,
         });
     }
+    GetPerson(callback: (data: Person) => any)
+    {
+        var url = "/Home/GetPerson";
+        var data = {  };
+        $.ajax({
+            url: url,
+            type : "POST",
+            data: data,
+            success: callback,
+        });
+    }
+}
+
+interface Person
+{
+    Id: number;
+    FirstName: string;
+    LastName: string;
 }

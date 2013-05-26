@@ -1,0 +1,26 @@
+﻿@model Weld.Templates.ProxyApiGetMethod
+
+@functions {
+    //include a formatted string or put nothing if value is empty
+    private string I(string format,params object[] value)
+    {
+        return string.Format(format, value);
+    }
+
+    //include a string or put nothing
+    private string I(string output, bool condition)
+    {
+        return condition ? output : "";
+    }
+
+}
+
+@I("{0}({1}: {2}, callback: (data: {3}) => any)",Model.MethodName,Model.ParameterName,Model.ParameterName,Model.ReturnType)
+{
+    var url = "@Model.Url";
+    $.ajax({
+            url: url,            
+            succes: callback,
+            dataType : 'json'
+        });
+}

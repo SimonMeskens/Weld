@@ -22,5 +22,16 @@ var HomeController = (function () {
             data: data
         });
     };
+    HomeController.prototype.GetPerson = function (callback) {
+        var url = "/Home/GetPerson";
+        var data = {
+        };
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: data,
+            success: callback
+        });
+    };
     return HomeController;
 })();

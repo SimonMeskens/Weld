@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
@@ -47,6 +48,21 @@ namespace Weld.Infra
             result += "    }\r\n";
 
             return result;
+        }
+
+        public string GetTypeScriptInterface(Type type)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetProxyApi(Type type)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetViewModelCode(Type type)
+        {
+            throw new NotImplementedException();
         }
     }
 }

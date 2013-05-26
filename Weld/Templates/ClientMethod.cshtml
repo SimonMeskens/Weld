@@ -22,7 +22,7 @@
         var data = @Model.Data;
         $.ajax({
             url: url,
-            @Raw(I("method : \"{0}\",",Model.AjaxMethod))
+            @Raw(I("type : \"{0}\",",Model.AjaxMethod))
             @I("data: data,",Model.Data)
             @I("traditional: true,",Model.Traditional)
             @I("success: {0},",Model.OnSucces)

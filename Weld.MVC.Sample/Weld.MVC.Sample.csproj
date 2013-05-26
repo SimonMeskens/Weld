@@ -132,10 +132,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AnotherController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\WeldContext.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -218,13 +222,9 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\typings\jquery\jquery.d.ts" />
-    <Content Include="Scripts\Weld\HomeController.js">
-      <DependentUpon>HomeController.ts</DependentUpon>
-    </Content>
-    <Content Include="Scripts\Weld\HomeController.min.js">
-      <DependentUpon>HomeController.ts</DependentUpon>
-    </Content>
-    <Content Include="Scripts\Weld\HomeController.ts" />
+    <Content Include="Scripts\Weld\AnotherController.js" />
+    <Content Include="Scripts\Weld\HomeController.js" />
+    <TypeScriptCompile Include="Scripts\Weld\HomeController.ts" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -238,10 +238,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <TypeScriptCompile Include="Scripts\Weld\AnotherController.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -273,7 +273,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51882</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:51857/</IISUrl>
+          <IISUrl>http://localhost:51860/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -283,11 +283,14 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <PropertyGroup>
-    <PostBuildEvent>.\..\..\Weld.Console\bin\debug\Weld.console $(TargetFileName) $(ProjectDir)\Scripts\Weld</PostBuildEvent>
-  </PropertyGroup>
-  <Target Name="AfterBuild">
-    <Exec Command="&quot;$(PROGRAMFILES)\Microsoft SDKs\TypeScript\tsc&quot;     @(TypeScriptCompile ->'&quot;%(fullpath)&quot;', ' ')" />
+  <Target Name="TypeScript" AfterTargets="Afterbuild">
+    <Exec Command="&quot;$(PROGRAMFILES)\Microsoft SDKs\TypeScript\tsc&quot; @(TypeScriptCompile ->'&quot;%(fullpath)&quot;', ' ')" />
+  </Target>
+  <Target Name="WeldAfterbuild" BeforeTargets="TypeScript" AfterTargets="AfterBuild">
+    <Exec Command=".\..\Weld.Console\bin\debug\Weld.console bin\$(TargetFileName) &quot;$(ProjectDir)\Scripts\Weld&quot;" />
+    <CreateItem Include="$(ProjectDir)\Scripts\Weld\*.ts">
+      <Output TaskParameter="Include" ItemName="TypeScriptCompile" />
+    </CreateItem>
   </Target>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

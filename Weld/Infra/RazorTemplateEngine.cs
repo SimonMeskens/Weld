@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
 using RazorEngine;
 using RazorEngine.Templating;
+using Weld.Attributes;
 using Weld.Templates;
 
 namespace Weld.Infra
@@ -29,7 +31,8 @@ namespace Weld.Infra
                 model.OnSucces = "callback";
             }
 
-            var isPost = method.GetCustomAttributes(typeof(HttpPostAttribute), true).Any();
+            //hacky
+            var isPost = method.GetCustomAttributes(typeof(HttpPostAttribute), true).Any() || returnType.IsJsonResult() || returnType == typeof(JsonResult);
             model.AjaxMethod = isPost ? "POST" : "";
 
             var allParameters = string.Join(", ", inputParameters);
@@ -42,12 +45,92 @@ namespace Weld.Infra
             model.Data = "{ " + string.Join(", ", inputJsonTuples) + " }";
 
             
-            var template = GetTemplate();
+            var template = GetTemplate("ClientMethod");
 
             
             return RemoveEmptyLines(Razor.Parse(template, model));//.Split("\r\n".ToCharArray(),StringSplitOptions.RemoveEmptyEntries);
             
         }
+
+        public string GetTypeScriptInterface(Type type)
+        {
+            var template = GetTemplate("TypeScriptInterface");
+
+            //get all public properties 
+            var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            var propertyTypes =properties.Select(p => new Tuple<string, string>(p.Name, TypeMapper.GetTypeScriptType(p.PropertyType))).ToList();
+
+            var model = new TypeScriptInterfaceModel
+                {
+                    TypeName = type.Name,
+                    PropertyNamesAndTypeScriptTypes = propertyTypes
+                };
+            return Razor.Parse(template, model);
+        }
+
+        public string GetProxyApi(Type type)
+        {
+            var methods = type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+
+            return "";
+        }
+
+        //TODO: remove dup with processor..get this out of templating
+        private string GetClassName(Type type)
+        {
+            return string.Format(type.Name);
+        }
+
+        public string GetViewModelCode(Type type)
+        {
+            var template = GetTemplate("ViewModel");
+            var model = new ViewModel
+                {
+                    ClassName = GetClassName(type), 
+                    PropertyNames = GetViewModelPropertyNames(type)
+                };
+
+            return Razor.Parse(template, model);
+        }
+
+        private IList<string> GetViewModelPropertyNames(Type type)
+        {
+            var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            var result = new List<string>();
+
+            //if a property is a viewmodel write it out
+            foreach (var property in properties)
+            {
+                if (property.PropertyType.GetCustomAttributes(true).OfType<WeldViewModelAttribute>().Any())
+                {
+                    var names = GetViewModelPropertyNames(property.PropertyType);
+                    result = result.Concat(names.Select(n => property.Name + "_" + n)).ToList();
+                }
+                else
+                {
+                    result.Add(property.Name);
+                }
+            }
+
+            return result;
+        }
+
+        public string GetProxyApiGetMethod(MethodInfo method)
+        {
+            var template = GetTemplate("ProxyApiGetMethod");
+            var parameterInfo = method.GetParameters()[0];
+            var model = new ProxyApiGetMethod
+                {
+                    MethodName = method.Name,
+                    ParameterName = parameterInfo.Name,
+                    ParameterType = TypeMapper.GetTypeScriptType(parameterInfo.ParameterType),
+                    ReturnType = TypeMapper.GetTypeScriptType(method.ReturnType),
+
+                };
+            return "";
+        }
+
         private string RemoveEmptyLines(string value)
         {
             var lines = value.Split("\r\n".ToCharArray(), StringSplitOptions.None);
@@ -55,10 +138,12 @@ namespace Weld.Infra
             return string.Join("\r\n",lines)+"\r\n";
         }
 
-        private string GetTemplate()
+        private string GetTemplate(string templateName)
         {
             string result;
-            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Weld.Templates.ClientMethod.cshtml"))
+            var weldTemplatesClientmethodCshtml = "Weld.Templates."+templateName+".cshtml";
+
+            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(weldTemplatesClientmethodCshtml))
             {
                 using (var reader = new StreamReader(stream))
                 {

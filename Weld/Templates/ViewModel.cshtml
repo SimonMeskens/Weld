@@ -1,0 +1,20 @@
+﻿@model Weld.Templates.ViewModel
+
+@functions {
+        //include a formatted string or put nothing if value is empty
+    private string Get(string name)
+    {
+        return "$" + name + "()";
+    }
+
+}
+class @Model.ClassName 
+{
+    @foreach (var p in @Model.PropertyNames)
+    {
+    @:static @p: string = "@p";
+    @:static get @Get(p) : JQuery {
+        @:return $("#@Raw(p)");
+    @:}
+    }
+}

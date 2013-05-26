@@ -1,0 +1,8 @@
+﻿@model Weld.Templates.TypeScriptInterfaceModel
+interface @Model.TypeName
+{
+    @foreach (var p in @Model.PropertyNamesAndTypeScriptTypes)
+    {
+   <text> </text>@p.Item1<text>:</text> @p.Item2<text>;</text>
+    }
+}

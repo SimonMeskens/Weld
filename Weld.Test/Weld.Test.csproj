@@ -32,12 +32,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Build" />
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,6 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientUrlTest.cs" />
+    <Compile Include="Scenarios\ClientUrlController.cs" />
+    <Compile Include="TypeScriptWeldViewModelTest.cs" />
+    <Compile Include="JSonTests.cs" />
+    <Compile Include="RazorTemplateEngineTest.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Scenarios\JSonResultSample.cs" />
+    <Compile Include="Scenarios\NormalJSonResultSample.cs" />
+    <Compile Include="TestHelper.cs" />
     <Compile Include="Scenarios\AccountController.cs" />
     <Compile Include="Scenarios\AnyForUnknown.cs" />
     <Compile Include="Scenarios\BoolMethod.cs" />
@@ -60,6 +71,9 @@
     <Compile Include="Scenarios\StringMethod.cs" />
     <Compile Include="TypeScriptProcessorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ChildViewModel.cs" />
+    <Compile Include="ViewModels\NestedViewModel.cs" />
+    <Compile Include="ViewModels\SimpleViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -75,7 +89,33 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\Sample.csproj" />
+    <Content Include="Models\Person.ts" />
+    <Content Include="Scenarios\AccountController.js">
+      <DependentUpon>AccountController.ts</DependentUpon>
+    </Content>
+    <Content Include="Scenarios\BoolMethod.js">
+      <DependentUpon>BoolMethod.ts</DependentUpon>
+    </Content>
+    <Content Include="Scenarios\Copy of AccountController.js">
+      <DependentUpon>ClientUrlController.ts</DependentUpon>
+    </Content>
+    <Content Include="Scenarios\ClientUrlController.ts" />
+    <Content Include="Scenarios\NormalJSonResultSample.ts" />
+    <Content Include="Scenarios\JSonResultSample.ts" />
+    <Content Include="Scenarios\MethodWithReturnValue.js">
+      <DependentUpon>MethodWithReturnValue.ts</DependentUpon>
+    </Content>
+    <Content Include="Scenarios\PostStringMethod.js">
+      <DependentUpon>PostStringMethod.ts</DependentUpon>
+    </Content>
     <Content Include="typings\jquery\jquery.d.ts" />
+    <Content Include="ViewModels\ChildViewModel.js">
+      <DependentUpon>ChildViewModel.ts</DependentUpon>
+    </Content>
+    <Content Include="ViewModels\ChildViewModel.ts" />
+    <Content Include="ViewModels\NestedViewModel.ts" />
+    <Content Include="ViewModels\SimpleViewModel.ts" />
     <TypeScriptCompile Include="Scenarios\CustomUrl.ts" />
     <Content Include="Scenarios\AccountController.ts" />
     <Content Include="Scenarios\BoolMethod.ts" />

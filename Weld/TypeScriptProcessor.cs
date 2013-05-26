@@ -4,8 +4,10 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Web.Http;
 using Weld.Attributes;
 using Weld.Extensions;
+using Weld.Infra;
 
 namespace Weld
 {
@@ -18,6 +20,24 @@ namespace Weld
     {
         public ProcessResult Process(Type type)
         {
+            if (type.GetCustomAttributes(true).OfType<WeldViewModelAttribute>().Any())
+            {
+                WeldViewModelAttribute attribute = type.GetCustomAttributes(true).OfType<WeldViewModelAttribute>().FirstOrDefault();
+                if (attribute != null)
+                {
+                    var fileName = GetFileName(type);
+                    
+                    var content = GetIncludes() + Environment.NewLine + attribute.GetCode(type);
+                    
+                    return new ProcessResult
+                        {
+                            Content = content, 
+                            FileName = fileName
+                        };
+                }
+            }
+
+
             //parse attibutes..and return typescript
             var members = type.GetMembers(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
 
@@ -43,15 +63,23 @@ namespace Weld
             return "/// <reference path=\"../typings/jquery/jquery.d.ts\" />";
         }
 
-        private ProcessResult GenerateCode(Type type, IEnumerable<MemberInfo> targetMembers)
+        private ProcessResult GenerateCode(Type type, IList<MemberInfo> targetMembers)
         {
             var fileName = GetFileName(type);
             var className = GetClassName(type);
 
+
+            
+
+
             var contentBuilder = new StringBuilder();
+            
+
             contentBuilder.AppendLine(GetIncludes());
             contentBuilder.AppendLineFormat("class {0}", className);
             contentBuilder.AppendLine("{");
+
+
 
             foreach (var method in targetMembers)
             {
@@ -62,13 +90,47 @@ namespace Weld
                 }
             }
 
-            contentBuilder.Append("}");
+            contentBuilder.AppendLine("}");
+
+            AppendInterfaces(targetMembers, contentBuilder);
 
             return new ProcessResult
                 {
                     FileName = fileName,
                     Content = contentBuilder.ToString()
                 };
+        }
+
+        private static void AppendInterfaces(IList<MemberInfo> targetMembers, StringBuilder contentBuilder)
+        {
+            var typeScriptJSonInterfaces = GetTypeScriptJSonInterfaces(targetMembers);
+            if (!string.IsNullOrEmpty(typeScriptJSonInterfaces))
+            {
+                contentBuilder.AppendLine();
+                contentBuilder.Append(typeScriptJSonInterfaces);    
+            }
+        }
+
+        /// <summary>
+        /// TODO : not only JSON stuff.
+        /// </summary>
+        /// <param name="targetMembers"></param>
+        /// <returns></returns>
+        private static string GetTypeScriptJSonInterfaces(IEnumerable<MemberInfo> targetMembers)
+        {
+            var engine = new RazorTemplateEngine();
+            var methods = targetMembers.OfType<MethodInfo>().ToList();
+            var returnTypes = methods.Select(m => m.ReturnType).Distinct().ToList();
+            var parameterTypes = methods.SelectMany(m => m.GetParameters()).Select(p => p.ParameterType).Distinct().ToList();
+            var relevantTypes = returnTypes.Concat(parameterTypes).Where(t => !t.FullName.StartsWith("System")).ToList();
+            var result = new StringBuilder();
+
+            foreach (var relevantType in relevantTypes.Where(t => t.IsJsonResult()))
+            {
+                var genericArgument = relevantType.GetGenericArguments()[0];
+                result.Append(engine.GetTypeScriptInterface(genericArgument));
+            }
+            return result.ToString();
         }
 
         private string GetClassName(Type type)

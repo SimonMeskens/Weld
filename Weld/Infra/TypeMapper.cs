@@ -7,6 +7,11 @@ namespace Weld.Infra
     {
         public static string GetTypeScriptType(Type parameterType)
         {
+            if (parameterType.IsJsonResult())
+            {
+                return parameterType.GetGenericArguments()[0].Name;
+            }
+
             if (parameterType.IsArray)
             {
                 return GetTypeScriptType(parameterType.GetElementType()) + "[]";

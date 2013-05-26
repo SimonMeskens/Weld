@@ -7,7 +7,7 @@ class PostStringMethod
         var data = { value: value };
         $.ajax({
             url: url,
-            method : "POST",
+            type : "POST",
             data: data,
             success: callback,
         });
