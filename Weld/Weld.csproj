@@ -97,9 +97,9 @@
   <ItemGroup>
     <None Include="packages.config" />
     <EmbeddedResource Include="Templates\ClientMethod.cshtml" />
-    <EmbeddedResource Include="Templates\TypeScriptInterface.cshtml" />
     <EmbeddedResource Include="Templates\ProxyApiGetMethod.cshtml" />
     <EmbeddedResource Include="Templates\ViewModel.cshtml" />
+    <EmbeddedResource Include="Templates\TypeScriptInterface.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

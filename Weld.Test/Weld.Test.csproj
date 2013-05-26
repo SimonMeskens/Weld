@@ -101,6 +101,9 @@
       <DependentUpon>ClientUrlController.ts</DependentUpon>
     </Content>
     <Content Include="Scenarios\ClientUrlController.ts" />
+    <Content Include="Scenarios\JSonResultSample.js">
+      <DependentUpon>JSonResultSample.ts</DependentUpon>
+    </Content>
     <Content Include="Scenarios\NormalJSonResultSample.ts" />
     <Content Include="Scenarios\JSonResultSample.ts" />
     <Content Include="Scenarios\MethodWithReturnValue.js">
